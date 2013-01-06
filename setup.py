@@ -2,9 +2,9 @@
 from setuptools import setup
 
 
-description = "A django package that allows easy identification of visitor's "
-              "browser, operating system and device information (mobile phone, "
-              "tablet or a touch capable)."
+description = ("A django package that allows easy identification of visitor's "
+               "browser, operating system and device information (mobile "
+               "phone, tablet or has touch capabilities).")
 
 setup(
     name='django-user_agents',
