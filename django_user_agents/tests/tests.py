@@ -23,3 +23,8 @@ class MiddlewareTest(unittest.TestCase):
         response = client.get(reverse('user_agent_test'))
         self.assertIsInstance(response.context['user_agent'], UserAgent)
         self.assertIsInstance(cache.get(slugify(iphone_ua_string)), UserAgent)
+
+    def test_empty_user_agent_does_not_cause_error(self):
+        client = Client()
+        response = client.get(reverse('user_agent_test'))
+        self.assertEqual(response.context['user_agent'].os.family, 'Other')

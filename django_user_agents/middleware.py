@@ -20,4 +20,4 @@ class UserAgentMiddleware(object):
     # A middleware that adds a "user_agent" object to request
     def process_request(self, request):
         request.user_agent = SimpleLazyObject(
-            lambda: get_user_agent_cached(request.META['HTTP_USER_AGENT']))
+            lambda: get_user_agent_cached(request.META.get('HTTP_USER_AGENT', '')))
