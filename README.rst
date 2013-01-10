@@ -6,8 +6,8 @@ including whether the visitor uses a mobile phone, tablet or a touch capable dev
 it uses `user-agents <https://github.com/selwin/python-user-agents>`_.
 
 
-How to Use
-==========
+Installation
+============
 
 1. Install ``django-user-agents``, you'll have to make sure that `user-agents`_ is installed first::
 
@@ -17,10 +17,10 @@ How to Use
 2. Configure ``settings.py``:
 
 .. code-block:: python
-
-    MIDDLEWARE_CLASSES = (
-        # other middlewares...
-        'django_user_agents.middleware.UserAgentMiddleware',
+    
+    INSTALLED_APPS = (
+        # Other apps...
+        'django_user_agents',
     )
 
     # Cache backend is optional, but recommended to speed up user agent parsing
@@ -31,7 +31,23 @@ How to Use
         }
     }
 
-3. ``UserAgentMiddleware`` will add a ``user_agent`` attribute to ``request``:
+Usage
+=====
+
+Middleware
+----------
+
+Add ``UserAgentMiddleware`` in ``settings.py``:
+
+.. code-block:: python
+
+    MIDDLEWARE_CLASSES = (
+        # other middlewares...
+        'django_user_agents.middleware.UserAgentMiddleware',
+    )
+
+A ``user_agent`` attribute will now be added to ``request``, which you can use
+in ``views.py``:
 
 .. code-block:: python
     
@@ -59,6 +75,13 @@ How to Use
         # Device properties
         request.user_agent.device  # returns Device(family='iPhone')
         request.user_agent.device.family  # returns 'iPhone'
+
+If you have ``django.core.context_processors.request`` enabled, ``user_agent``
+will also be available in template through ``request``::
+
+    {% if request.user_agent.is_mobile %}
+        Do stuff here...
+    {% endif %}
 
 You can find out more about user agent attributes at `here <https://github.com/selwin/python-user-agents>`_.
 
