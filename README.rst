@@ -83,6 +83,25 @@ will also be available in template through ``request``::
         Do stuff here...
     {% endif %}
 
+
+View Usage
+----------
+
+``django-user_agents`` comes with ``get_user_agent`` which takes a single 
+``request`` argument and returns a ``UserAgent`` instance. Example usage:
+
+.. code-block:: python
+    
+    from django_user_agents.utils import get_user_agent
+
+    def my_view(request):
+        user_agent = get_user_agent(request)
+        if user_agent.is_mobile:
+            # Do stuff here...
+        elif user_agent.is_tablet:
+            # Do other stuff...
+
+
 You can find out more about user agent attributes at `here <https://github.com/selwin/python-user-agents>`_.
 
 
