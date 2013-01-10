@@ -102,6 +102,42 @@ View Usage
             # Do other stuff...
 
 
+Template Usage
+--------------
+
+``django-user_agents`` comes with a few template filters:
+
+* ``is_mobile``
+* ``is_tablet``
+* ``is_touch_capable``
+* ``is_pc``
+* ``is_bot``
+
+You can use all of these like any other django template filters::
+    
+    {% load user_agents %}
+
+    {% if request|is_mobile %}
+        Mobile device stuff...
+    {% endif %}
+
+    {% if request|is_tablet %}
+        Tablet stuff...
+    {% endif %}
+
+    {% if request|is_pc %}
+        PC stuff...
+    {% endif %}
+
+    {% if request|is_touch_capable %}
+        Touch capable device stuff...
+    {% endif %}
+
+    {% if request|is_bot %}
+        Bot stuff...
+    {% endif %}
+
+
 You can find out more about user agent attributes at `here <https://github.com/selwin/python-user-agents>`_.
 
 
