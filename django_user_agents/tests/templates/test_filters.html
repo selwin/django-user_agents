@@ -1,0 +1,5 @@
+{% load user_agents %}
+
+{% if request|is_mobile or request|is_pc or request|is_tablet or request|is_bot or request|is_touch_capable %}
+    Just making sure all the filters can be used without errors
+{% endif %}

@@ -14,3 +14,13 @@ def get_user_agent(request):
         user_agent = parse(ua_string)
         cache.set(key, user_agent)
     return user_agent
+
+
+def get_and_set_user_agent(request):
+    # If request already has ``user_agent``, it will return that, otherwise
+    # call get_user_agent and attach it to request so it can be reused  
+    if hasattr(request, 'user_agent'):
+        return request.user_agent
+
+    request.user_agent = get_user_agent(request)
+    return request.user_agent
