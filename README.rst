@@ -152,6 +152,11 @@ Running Tests
 Changelog
 =========
 
+0.2.0
+-----
+* Added template filters
+* Added ``get_user_agent`` function in utils.py
+
 0.1.1
 -----
 * Fixed a ``KeyError`` exception in the case of empty ``HTTP_USER_AGENT``
