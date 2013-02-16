@@ -152,6 +152,10 @@ Running Tests
 Changelog
 =========
 
+0.2.1
+-----
+* Fixed packaging
+
 0.2.0
 -----
 * Added template filters
