@@ -1,14 +1,20 @@
+from hashlib import md5
+
 from django.core.cache import cache
-from django.template.defaultfilters import slugify
 
 from user_agents import parse
+
+
+def get_cache_key(ua_string):
+    # Some user agent strings are longer than 250 characters so we use its MD5
+    return md5(ua_string).hexdigest()
 
 
 def get_user_agent(request):
     # Tries to get UserAgent objects from cache before constructing a UserAgent
     # from scratch because parsing regexes.yaml/json (ua-parser) is slow
     ua_string = request.META.get('HTTP_USER_AGENT', '')
-    key = slugify(ua_string)
+    key = get_cache_key(ua_string)
     user_agent = cache.get(key)
     if user_agent is None:
         user_agent = parse(ua_string)
@@ -18,7 +24,7 @@ def get_user_agent(request):
 
 def get_and_set_user_agent(request):
     # If request already has ``user_agent``, it will return that, otherwise
-    # call get_user_agent and attach it to request so it can be reused  
+    # call get_user_agent and attach it to request so it can be reused
     if hasattr(request, 'user_agent'):
         return request.user_agent
 

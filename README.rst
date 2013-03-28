@@ -1,7 +1,7 @@
 Django User Agents
 ==================
 
-A django package that allows easy identification of visitor's browser, OS and device information, 
+A django package that allows easy identification of visitor's browser, OS and device information,
 including whether the visitor uses a mobile phone, tablet or a touch capable device. Under the hood,
 it uses `user-agents <https://github.com/selwin/python-user-agents>`_.
 
@@ -17,7 +17,7 @@ Installation
 2. Configure ``settings.py``:
 
 .. code-block:: python
-    
+
     INSTALLED_APPS = (
         # Other apps...
         'django_user_agents',
@@ -50,7 +50,7 @@ A ``user_agent`` attribute will now be added to ``request``, which you can use
 in ``views.py``:
 
 .. code-block:: python
-    
+
     def my_view(request):
 
         # Let's assume that the visitor uses an iPhone...
@@ -59,7 +59,7 @@ in ``views.py``:
         request.user_agent.is_touch_capable # returns True
         request.user_agent.is_pc # returns False
         request.user_agent.is_bot # returns False
-        
+
         # Accessing user agent's browser attributes
         request.user_agent.browser  # returns Browser(family=u'Mobile Safari', version=(5, 1), version_string='5.1')
         request.user_agent.browser.family  # returns 'Mobile Safari'
@@ -87,11 +87,11 @@ will also be available in template through ``request``::
 View Usage
 ----------
 
-``django-user_agents`` comes with ``get_user_agent`` which takes a single 
+``django-user_agents`` comes with ``get_user_agent`` which takes a single
 ``request`` argument and returns a ``UserAgent`` instance. Example usage:
 
 .. code-block:: python
-    
+
     from django_user_agents.utils import get_user_agent
 
     def my_view(request):
@@ -114,7 +114,7 @@ Template Usage
 * ``is_bot``
 
 You can use all of these like any other django template filters::
-    
+
     {% load user_agents %}
 
     {% if request|is_mobile %}
@@ -151,6 +151,10 @@ Running Tests
 
 Changelog
 =========
+
+0.2.2
+-----
+* Fixed a bug that causes cache set/read to fail when user agent is longer than 250 characters
 
 0.2.1
 -----
