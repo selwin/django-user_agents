@@ -7,7 +7,7 @@ from user_agents import parse
 
 def get_cache_key(ua_string):
     # Some user agent strings are longer than 250 characters so we use its MD5
-    return md5(ua_string).hexdigest()
+    return ''.join(['django_user_agents.', md5(ua_string).hexdigest()])
 
 
 def get_user_agent(request):
