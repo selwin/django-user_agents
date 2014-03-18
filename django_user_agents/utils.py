@@ -3,11 +3,12 @@ from hashlib import md5
 from django.core.cache import cache
 
 from user_agents import parse
+from django.utils import six
 
 
 def get_cache_key(ua_string):
     # Some user agent strings are longer than 250 characters so we use its MD5
-    return ''.join(['django_user_agents.', md5(ua_string).hexdigest()])
+    return ''.join(['django_user_agents.', md5(ua_string.encode("UTF-8") if six.PY3 else ua_string).hexdigest()])
 
 
 def get_user_agent(request):
