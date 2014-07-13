@@ -51,7 +51,11 @@ class MiddlewareTest(unittest.TestCase):
         self.assertFalse(user_agents.is_bot(request))
 
     def test_get_cache_key(self):
-        self.assertEqual(get_cache_key(long_ua_string),
-                         'c226ec488bae76c60dd68ad58f03d729')
-        self.assertEqual(get_cache_key(iphone_ua_string),
-                         '00705b9375a0e46e966515fe90f111da')
+        self.assertEqual(
+            get_cache_key(long_ua_string),
+            'django_user_agents.c226ec488bae76c60dd68ad58f03d729',
+        )
+        self.assertEqual(
+            get_cache_key(iphone_ua_string),
+            'django_user_agents.00705b9375a0e46e966515fe90f111da',
+        )
