@@ -6,8 +6,6 @@ python:
     - "3.4"
     - "pypy"
 env:
-    - DJANGO="django>=1.3,<1.4"
-    - DJANGO="django>=1.4,<1.5"
     - DJANGO="django>=1.5,<1.6"
     - DJANGO="django>=1.6,<1.7"
     - DJANGO="https://www.djangoproject.com/download/1.7c1/tarball/"
@@ -16,17 +14,3 @@ install:
     - "pip install ${DJANGO}"
 script:
     - "python manage.py test"
-matrix:
-  exclude:
-    - python: "3.2"
-      env: DJANGO="django>=1.3,<1.4"
-    - python: "3.3"
-      env: DJANGO="django>=1.4,<1.5"
-    - python: "3.3"
-      env: DJANGO="django>=1.3,<1.4"
-    - python: "3.3"
-      env: DJANGO="django>=1.4,<1.5"
-    - python: "3.4"
-      env: DJANGO="django>=1.3,<1.4"
-    - python: "3.4"
-      env: DJANGO="django>=1.4,<1.5"
