@@ -29,7 +29,7 @@ CACHES = {
 }
 
 TEMPLATE_DIRS = (
-    path.join(path.join(path.dirname(__file__), "tests", "templates")),
+    path.join(path.dirname(__file__), "templates"),
 )
 
 SECRET_KEY = 'foobarbaz'
