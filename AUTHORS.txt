@@ -1,3 +1,4 @@
-Author:
+Authors:
 
 * Selwin Ong (https://github.com/selwin)
+- Daniel Hawkins (https://github.com/hwkns)

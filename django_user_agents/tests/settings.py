@@ -31,3 +31,5 @@ CACHES = {
 TEMPLATE_DIRS = (
     path.join(path.dirname(__file__), "templates"),
 )
+
+SECRET_KEY = 'foobarbaz'
