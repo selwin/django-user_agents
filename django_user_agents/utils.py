@@ -1,9 +1,16 @@
+import sys
 from hashlib import md5
 
 from django.core.cache import cache
-from django.utils.six import text_type
 
 from user_agents import parse
+
+
+# Small snippet from the `six` library to help with Python 3 compatibility
+if sys.version_info[0] == 3:
+    text_type = str
+else:
+    text_type = unicode
 
 
 def get_cache_key(ua_string):
