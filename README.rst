@@ -152,6 +152,10 @@ Running Tests
 Changelog
 =========
 
+0.3.0
+-----
+* Python 3, thanks to @hwkns!
+
 0.2.2
 -----
 * Fixed a bug that causes cache set/read to fail when user agent is longer than 250 characters
