@@ -152,6 +152,10 @@ Running Tests
 Changelog
 =========
 
+0.3.1
+-----
+* Fixed a bug when request have no META attribute
+
 0.3.0
 -----
 * Python 3, thanks to @hwkns!
