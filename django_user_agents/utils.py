@@ -23,7 +23,7 @@ def get_cache_key(ua_string):
 def get_user_agent(request):
     # Tries to get UserAgent objects from cache before constructing a UserAgent
     # from scratch because parsing regexes.yaml/json (ua-parser) is slow
-    if not request.META:
+    if not hasattr(request, 'META'):
         return None
 
     ua_string = request.META.get('HTTP_USER_AGENT', '')
