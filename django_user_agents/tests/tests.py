@@ -1,11 +1,22 @@
 from django.core.cache import cache
 from django.core.urlresolvers import reverse
 from django.test.client import Client, RequestFactory
+from django.test.utils import override_settings
 from django.utils import unittest
 
 from user_agents.parsers import UserAgent
+from django_user_agents import utils
 from django_user_agents.utils import get_cache_key, get_user_agent, get_and_set_user_agent
 from django_user_agents.templatetags import user_agents
+
+try:
+    # The reload() function has been moved from imp to importlib since python 3.4
+    from importlib import reload as reload_module
+except ImportError:
+    try:
+        from imp import reload as reload_module
+    except ImportError:
+        reload_module = reload  # python 2.x
 
 
 iphone_ua_string = 'Mozilla/5.0 (iPhone; CPU iPhone OS 5_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9B179 Safari/7534.48.3'
@@ -14,6 +25,10 @@ long_ua_string = 'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0
 
 
 class MiddlewareTest(unittest.TestCase):
+
+    def tearDown(self):
+        for ua in [iphone_ua_string, ipad_ua_string, long_ua_string]:
+            cache.delete(get_cache_key(ua))
 
     def test_middleware_assigns_user_agent(self):
         client = Client(HTTP_USER_AGENT=ipad_ua_string)
@@ -59,3 +74,22 @@ class MiddlewareTest(unittest.TestCase):
             get_cache_key(iphone_ua_string),
             'django_user_agents.00705b9375a0e46e966515fe90f111da',
         )
+
+    @override_settings(USER_AGENTS_CACHE=None)
+    def test_disabled_cache(self):
+        reload_module(utils)  # re-import with patched settings
+
+        request = RequestFactory(HTTP_USER_AGENT=iphone_ua_string).get('')
+        user_agent = get_user_agent(request)
+        self.assertIsInstance(user_agent, UserAgent)
+        self.assertIsNone(cache.get(get_cache_key(iphone_ua_string)))
+
+    @override_settings(USER_AGENTS_CACHE='test')
+    def test_custom_cache(self):
+        reload_module(utils)  # re-import with patched settings
+
+        request = RequestFactory(HTTP_USER_AGENT=iphone_ua_string).get('')
+        user_agent = get_user_agent(request)
+        self.assertIsInstance(user_agent, UserAgent)
+        self.assertIsNone(cache.get(get_cache_key(iphone_ua_string)))
+        self.assertIsInstance(utils.cache.get(get_cache_key(iphone_ua_string)), UserAgent)
