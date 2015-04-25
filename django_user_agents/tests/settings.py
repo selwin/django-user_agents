@@ -25,7 +25,13 @@ CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
         'TIMEOUT': 60,
-    }
+        'LOCATION': 'default-location',
+    },
+    'test': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'TIMEOUT': 60,
+        'LOCATION': 'test-location',
+    },
 }
 
 TEMPLATE_DIRS = (
