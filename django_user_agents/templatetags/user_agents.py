@@ -12,6 +12,11 @@ def is_mobile(request):
 
 
 @register.filter()
+def is_opera_mini(request):
+    return get_and_set_user_agent(request).is_opera_mini
+
+
+@register.filter()
 def is_pc(request):
     return get_and_set_user_agent(request).is_pc
 
