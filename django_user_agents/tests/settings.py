@@ -1,3 +1,4 @@
+import django
 from os import path
 
 
@@ -16,11 +17,6 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'django_user_agents.tests.urls'
 
-TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-)
-
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
@@ -34,8 +30,18 @@ CACHES = {
     },
 }
 
-TEMPLATE_DIRS = (
-    path.join(path.dirname(__file__), "templates"),
-)
+if django.VERSION >= (1, 8):
+    TEMPLATES = [
+        {
+            'BACKEND': 'django.template.backends.django.DjangoTemplates',
+            'DIRS': [
+                path.join(path.dirname(__file__), "templates"),
+            ],
+        },
+    ]
+else:
+    TEMPLATE_DIRS = (
+        path.join(path.dirname(__file__), "templates"),
+    )
 
 SECRET_KEY = 'foobarbaz'
