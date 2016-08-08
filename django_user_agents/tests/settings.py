@@ -1,3 +1,4 @@
+import django
 from os import path
 
 
@@ -29,13 +30,18 @@ CACHES = {
     },
 }
 
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            path.join(path.dirname(__file__), "templates"),
-        ],
-    },
-]
+if django.VERSION >= (1, 8):
+    TEMPLATES = [
+        {
+            'BACKEND': 'django.template.backends.django.DjangoTemplates',
+            'DIRS': [
+                path.join(path.dirname(__file__), "templates"),
+            ],
+        },
+    ]
+else:
+    TEMPLATE_DIRS = (
+        path.join(path.dirname(__file__), "templates"),
+    )
 
 SECRET_KEY = 'foobarbaz'
