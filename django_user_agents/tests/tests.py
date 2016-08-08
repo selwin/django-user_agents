@@ -2,7 +2,7 @@ from django.core.cache import cache
 from django.core.urlresolvers import reverse
 from django.test.client import Client, RequestFactory
 from django.test.utils import override_settings
-from django.utils import unittest
+from django.test import SimpleTestCase
 
 from user_agents.parsers import UserAgent
 from django_user_agents import utils
@@ -24,7 +24,7 @@ ipad_ua_string = 'Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) A
 long_ua_string = 'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1) ; .NET CLR 1.1.4322; .NET CLR 2.0.50727; InfoPath.3; .NET CLR 3.0.04506.30; .NET CLR 3.0.04506.648; .NET CLR 3.5.21022; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729; .NET4.0C; .NET4.0E)'
 
 
-class MiddlewareTest(unittest.TestCase):
+class MiddlewareTest(SimpleTestCase):
 
     def tearDown(self):
         for ua in [iphone_ua_string, ipad_ua_string, long_ua_string]:

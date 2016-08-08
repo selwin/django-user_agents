@@ -16,11 +16,6 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'django_user_agents.tests.urls'
 
-TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-)
-
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
@@ -34,8 +29,13 @@ CACHES = {
     },
 }
 
-TEMPLATE_DIRS = (
-    path.join(path.dirname(__file__), "templates"),
-)
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            path.join(path.dirname(__file__), "templates"),
+        ],
+    },
+]
 
 SECRET_KEY = 'foobarbaz'
