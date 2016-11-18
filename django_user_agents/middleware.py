@@ -3,7 +3,7 @@ from django.utils.functional import SimpleLazyObject
 from .utils import get_user_agent
 
 
-class CustomUserAgentMiddleware(object):
+class UserAgentMiddleware(object):
 
     def __init__(self, get_response=None):
         if get_response is not None:
