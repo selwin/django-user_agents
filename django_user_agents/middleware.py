@@ -1,15 +1,17 @@
-import django
 from django.utils.functional import SimpleLazyObject
 
 from .utils import get_user_agent
 
-super_class = object
-if django.VERSION >= (1, 10):
-    from django.utils.deprecation import MiddlewareMixin
-    super_class = MiddlewareMixin
 
+class UserAgentMiddleware(object):
 
-class UserAgentMiddleware(super_class):
-    # A middleware that adds a "user_agent" object to request
+    def __init__(self, get_response=None):
+        if get_response is not None:
+            self.get_response = get_response
+
+    def __call__(self, request):
+        self.process_request(request)
+        return self.get_response(request)
+
     def process_request(self, request):
         request.user_agent = SimpleLazyObject(lambda: get_user_agent(request))
