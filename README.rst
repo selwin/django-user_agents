@@ -155,6 +155,13 @@ Running Tests
 Changelog
 =========
 
+0.3.2
+-----
+* Added compatibility with Django 1.10. Thanks @grschafer and @dannyboscan!
+* Added ``USER_AGENTS_CACHE`` option in ``settings.py``. Thanks @caxap!
+* Fixes a crash that happens when parsing ``request`` objects without ``META``. Thanks @rafaelks!
+
+
 0.3.1
 -----
 * Fixed a bug when request have no META attribute
