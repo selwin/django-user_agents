@@ -54,9 +54,3 @@ matrix:
       env: DJANGO="django>=1.6,<1.7"
     - python: "3.5"
       env: DJANGO="django>=1.7,<1.8"
-
-# django support map
-# 1.8  => 2.7, 3.2 (until end of 2016), 3.3, 3.4, 3.5
-# 1.9  => 2.7, 3.4, 3.5
-# 1.10 => 2.7, 3.4, 3.5
-# 1.11 => 2.7, 3.4, 3.5, 3.6
