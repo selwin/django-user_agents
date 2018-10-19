@@ -47,7 +47,7 @@ def get_user_agent(request):
     ua_string = request.META.get('HTTP_USER_AGENT', '')
 
     if not isinstance(ua_string, text_type):
-        ua_string = ua_string.decode('utf-8')
+        ua_string = ua_string.decode('utf-8', 'ignore')
 
     if cache:
         key = get_cache_key(ua_string)
