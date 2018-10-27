@@ -1,5 +1,4 @@
 from django.core.cache import cache
-from django.core.urlresolvers import reverse
 from django.test.client import Client, RequestFactory
 from django.test.utils import override_settings
 from django.test import SimpleTestCase
@@ -17,6 +16,11 @@ except ImportError:
         from imp import reload as reload_module
     except ImportError:
         reload_module = reload  # python 2.x
+
+try:
+    from django.urls import reverse  # django 1.10+
+except ImportError:
+    from django.core.urlresolvers import reverse
 
 
 iphone_ua_string = 'Mozilla/5.0 (iPhone; CPU iPhone OS 5_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9B179 Safari/7534.48.3'
