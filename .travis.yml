@@ -84,3 +84,7 @@ matrix:
       env: DJANGO="django>=1.9,<1.10"
     - python: "3.6"
       env: DJANGO="django>=1.10,<1.11"
+    - python: "pypy"
+      env: DJANGO="django>=2.0,<2.1"
+    - python: "pypy"
+      env: DJANGO="django>=2.1,<2.2"
