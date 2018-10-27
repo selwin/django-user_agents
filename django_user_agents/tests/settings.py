@@ -11,9 +11,14 @@ DATABASES = {
 
 INSTALLED_APPS = ['django_user_agents']
 
-MIDDLEWARE_CLASSES = (
-    'django_user_agents.middleware.UserAgentMiddleware',
-)
+if django.VERSION >= (1, 10):
+    MIDDLEWARE = [
+        'django_user_agents.middleware.UserAgentMiddleware',
+    ]
+else:
+    MIDDLEWARE_CLASSES = [
+        'django_user_agents.middleware.UserAgentMiddleware',
+    ]
 
 ROOT_URLCONF = 'django_user_agents.tests.urls'
 
