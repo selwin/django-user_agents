@@ -60,6 +60,9 @@ class MiddlewareTest(SimpleTestCase):
         client = Client(HTTP_USER_AGENT=ipad_ua_string)
         response = client.get(reverse('user_agent_test_filters'))
         self.assertEqual(response.status_code, 200)
+        self.assertContains(
+            response,
+            'Just making sure all the filters can be used without errors')
 
     def test_filters(self):
         request = RequestFactory(HTTP_USER_AGENT=iphone_ua_string).get('')

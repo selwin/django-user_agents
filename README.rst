@@ -155,6 +155,10 @@ Running Tests
 Changelog
 =========
 
+unreleased
+----------
+* Add support for Django 2.0 to 2.2
+
 0.3.1
 -----
 * Fixed a bug when request have no META attribute
