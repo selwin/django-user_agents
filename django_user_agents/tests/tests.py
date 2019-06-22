@@ -1,3 +1,4 @@
+# coding=utf-8
 from django.core.cache import cache
 from django.core.urlresolvers import reverse
 from django.test.client import Client, RequestFactory
@@ -93,3 +94,16 @@ class MiddlewareTest(SimpleTestCase):
         self.assertIsInstance(user_agent, UserAgent)
         self.assertIsNone(cache.get(get_cache_key(iphone_ua_string)))
         self.assertIsInstance(utils.cache.get(get_cache_key(iphone_ua_string)), UserAgent)
+
+
+unicode_ua_string = 'Mozilla/5.0 (Linux; Android 4.4.2; X325 – Locked to Life Wireless Build/KOT49H) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/30.0.0.0 Mobile Safari/537.36'
+
+class UtilsTest(SimpleTestCase):
+
+    @override_settings(USER_AGENTS_CACHE=None)
+    def test_unicode_ua_string(self):
+        reload_module(utils)  # re-import with patched settings
+
+        request = RequestFactory(HTTP_USER_AGENT=unicode_ua_string).get('')
+        
+        self.assertTrue(user_agents.is_mobile(request))
