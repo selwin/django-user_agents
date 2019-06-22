@@ -16,7 +16,7 @@ Installation
 
 2. Configure ``settings.py``:
 
-.. code-block:: python
+   .. code-block:: python
 
     INSTALLED_APPS = (
         # Other apps...
@@ -80,7 +80,9 @@ in ``views.py``:
         request.user_agent.device.family  # returns 'iPhone'
 
 If you have ``django.core.context_processors.request`` enabled, ``user_agent``
-will also be available in template through ``request``::
+will also be available in template through ``request``:
+
+.. code-block:: html+django
 
     {% if request.user_agent.is_mobile %}
         Do stuff here...
@@ -116,7 +118,9 @@ Template Usage
 * ``is_pc``
 * ``is_bot``
 
-You can use all of these like any other django template filters::
+You can use all of these like any other django template filters:
+
+.. code-block:: html+django
 
     {% load user_agents %}
 
