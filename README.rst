@@ -159,9 +159,9 @@ Running Tests
 Changelog
 =========
 
-unreleased
-----------
-* Add support for Django 2.0 to 2.2
+0.4.0
+-----
+* Add support for Django 2.0 to 2.2. Thanks @adamchainz and @joehybird!
 
 0.3.1
 -----

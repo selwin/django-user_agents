@@ -8,7 +8,7 @@ description = ("A django package that allows easy identification of visitors' "
 
 setup(
     name='django-user_agents',
-    version='0.3.1',
+    version='0.4.0',
     author='Selwin Ong',
     author_email='selwin.ong@gmail.com',
     packages=['django_user_agents'],
