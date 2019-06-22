@@ -6,4 +6,4 @@ def test(request):
 
 
 def test_filters(request):
-    return render(request, "test.html", {'request': request})
+    return render(request, "test_filters.html", {'request': request})
