@@ -1,6 +1,13 @@
 Django User Agents
 ==================
 
+.. image:: https://img.shields.io/pypi/v/django-user_agents.svg
+    :target: https://pypi.python.org/pypi/django-user_agents/
+
+.. image:: https://travis-ci.org/selwin/django-user_agents.svg?branch=master
+    :target: https://travis-ci.org/selwin/django-user_agents
+    :alt: See Build Status on Travis CI
+
 A django package that allows easy identification of visitor's browser, OS and device information,
 including whether the visitor uses a mobile phone, tablet or a touch capable device. Under the hood,
 it uses `user-agents <https://github.com/selwin/python-user-agents>`_.
