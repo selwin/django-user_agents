@@ -54,7 +54,10 @@ def get_user_agent(request):
         user_agent = cache.get(key)
         if user_agent is None:
             user_agent = parse(ua_string)
-            cache.set(key, user_agent)
+            try:
+                cache.set(key, user_agent)
+            except:
+                pass  # we do not care if the cache is not writable, let's not fail the request because of that.
     else:
         user_agent = parse(ua_string)
     return user_agent
